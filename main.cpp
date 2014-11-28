@@ -2,38 +2,75 @@
 #include <fstream>
 #include <math.h>
 using namespace std;
-
+//Trabaje con Merari, Kevin y Maynor,
 //Las siguientes funciones escribir y leer ingresan y leen respectivamente un numero ubicado al inicio de un archivo de texto
+//Esta funcion lo que hace es escribir un numero y luego en el archivo lee ese numero x que se ingreso.
 void escribirNumeroTexto(string nombre_archivo, int num)
 {
-
+ofstream out(nombre_archivo.c_str());
+out<<num<<endl;
+out.flush();
+out.close();
 }
+//se declara para poder leer el archivo
+//se decra la variable que se va a leer y se devuelve ese numero.
 int leerNumeroTexto(string nombre_archivo)
 {
-    return -1;
+    ifstream in (nombre_archivo.c_str());
+    int numero;
+    in>>numero;
+
+    return numero;
 }
 
 //Las siguientes funciones escribir y leer ingresan y leen respectivamente una cadena ubicada al inicio de un archivo de texto
+// se declara para poder escribir lo que se quiere en el archivo.
 void escribirStringTexto(string nombre_archivo, string str)
 {
+     ofstream out(nombre_archivo.c_str());
+    out<<str<<endl;
+    out.flush();
+    out.close();
 }
+//aqui se declara la variable y luego se devuelve la variable str para poder leer el string.
 string leerStringTexto(string nombre_archivo)
 {
-    return "";
+   ifstream in (nombre_archivo.c_str());
+    string str;
+    in>>str;
+
+    return str;
 }
 
 //Las siguientes funciones escribir y leer ingresan y leen respectivamente un numero ubicado al inicio de un archivo binario
+//aqui con ayuda de lo que hemos visto en clase.
+//se escribe lo que tendra el archivo.
 void escribirNumeroBinario(string nombre_archivo, int num)
 {
+    ofstream out (nombre_archivo.c_str());
+
+    out.write((char *)&num,4);
+    out.close();
 }
+//se declara la variable para poder leer lo que tendra el archivo
+//y luego se devuelve eso.
 int leerNumeroBinario(string nombre_archivo)
 {
-    return -1;
+   ifstream in(nombre_archivo.c_str());
+    int leer;
+    in.read((char*)&leer,4);
+
+    return leer;
 }
 
 //Las siguientes funciones escribir y leer ingresan y leen respectivamente una cadena ubicada al inicio de un archivo binario
+//ayuda obtenida de: http://www.cplusplus.com/forum/general/100714/
 void escribirStringBinario(string nombre_archivo, string str)
 {
+     ofstream out (nombre_archivo.c_str());
+    out.write(str.c_str(),10);
+    out.close();
+    
 }
 string leerStringBinario(string nombre_archivo)
 {
@@ -45,8 +82,10 @@ bool existe(string nombre_archivo, string str)
 {
     return false;
 }
-//realizado con ayuda del ejercicio en clase
+
 //Devuelve el numero mayor dado el nombre de un archivo binario
+//realizado con ayuda del ejercicio en clase, donde declaramos variables y hacemos una condicion if
+//para poder obtener el mayor.
 int obtenerMayor(string nombre)
 {
   ifstream in(nombre.c_str());
