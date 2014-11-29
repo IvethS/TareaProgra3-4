@@ -65,6 +65,7 @@ int leerNumeroBinario(string nombre_archivo)
 
 //Las siguientes funciones escribir y leer ingresan y leen respectivamente una cadena ubicada al inicio de un archivo binario
 //ayuda obtenida de: http://www.cplusplus.com/forum/general/100714/
+//se crea una variable para leer el archivo y luego una para que escriba la string en dicho archivo
 void escribirStringBinario(string nombre_archivo, string str)
 {
      ofstream out (nombre_archivo.c_str());
@@ -72,14 +73,33 @@ void escribirStringBinario(string nombre_archivo, string str)
     out.close();
     
 }
+//se crea una variable para leer el archivo, se hace una variable char para poder leer una string
+//se lee la variable y luego devuelve ese valor
 string leerStringBinario(string nombre_archivo)
 {
-    return "";
+   ifstream in(nombre_archivo.c_str());
+    char leido[4];
+    in.read(leido,4);
+    return leido;
 }
 
 //Devuelve true si encuentra str (dada) en un archivo dado el nombre
+//se crea para poder leer el archivo luego se crea otra para comparar con la palabra buscar, se hace un ciclo
+//se introduce la palabra comparar y se hace un if para la comparacion.
 bool existe(string nombre_archivo, string str)
 {
+   ifstream in(nombre_archivo.c_str());
+    string palabra;
+    int cant; 
+          
+    for(int i=0;i < cant;i++)
+    {
+        in>>palabra
+        if(palabra == str)
+        {
+            return true;
+        }
+    }
     return false;
 }
 
